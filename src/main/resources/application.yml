@@ -1,0 +1,14 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:3367/task_rest_db
+    username: admin
+    password: password
