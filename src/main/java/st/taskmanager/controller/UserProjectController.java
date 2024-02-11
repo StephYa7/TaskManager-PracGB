@@ -3,23 +3,24 @@ package st.taskmanager.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import st.taskmanager.model.User;
 import st.taskmanager.service.UserProjectService;
 
 import java.util.List;
+import java.util.Optional;
 
-@RestController
 @AllArgsConstructor
+@RestController("/projects")
 public class UserProjectController {
 
     private UserProjectService userProjectService;
 
 
-    @GetMapping
-    public ResponseEntity<List> getUsersByProjectId(Long projectId) {
-        return (ResponseEntity<List>) userProjectService.getUsersByProjectId(projectId);
+    @GetMapping("/{id}")
+    public ResponseEntity<List<User>> getUsersByProjectId(@PathVariable Long id) {
+        List<User> users = userProjectService.getUsersByProjectId(id);
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping
@@ -35,9 +36,9 @@ public class UserProjectController {
     }
 
     @PostMapping
-    public ResponseEntity removeUserFromProject(Long userId, Long projectId) {
+    public ResponseEntity<User> removeUserFromProject(Long userId, Long projectId) {
         userProjectService.removeUserFromProject(userId, projectId);
 
-        return new ResponseEntity<>(projectId, );
+        return
     }
 }
