@@ -7,31 +7,30 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import st.taskmanager.util.MyLocalDateTimeDeserializer;
-import st.taskmanager.util.TaskStatus;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-@Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tasks")
-public class Task {
+@NoArgsConstructor
+@Entity
+@Table(name = "projects")
+public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @Column(nullable = false, name = "status")
-    @Enumerated(EnumType.STRING)
-    private TaskStatus status;
+    private int id;
 
     @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = true)
     private String description;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = true, name = "date_created")
     @JsonDeserialize(using = MyLocalDateTimeDeserializer.class)
-    private LocalDateTime dateCreated;
+    private LocalDate dateCreated;
+
 }

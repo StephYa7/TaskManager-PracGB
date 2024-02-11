@@ -3,7 +3,6 @@ package st.taskmanager.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import st.taskmanager.model.Task;
-import st.taskmanager.model.TaskStatus;
 import st.taskmanager.service.TaskService;
 
 import java.util.List;

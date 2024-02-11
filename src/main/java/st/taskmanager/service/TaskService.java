@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import st.taskmanager.model.Task;
-import st.taskmanager.model.TaskStatus;
+import st.taskmanager.util.TaskStatus;
 import st.taskmanager.repository.TaskRepository;
 
 import java.util.List;
