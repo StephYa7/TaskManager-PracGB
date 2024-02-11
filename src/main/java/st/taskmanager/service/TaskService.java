@@ -2,9 +2,10 @@ package st.taskmanager.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import st.taskmanager.controller.TaskRepository;
+import org.springframework.transaction.annotation.Transactional;
 import st.taskmanager.model.Task;
 import st.taskmanager.model.TaskStatus;
+import st.taskmanager.repository.TaskRepository;
 
 import java.util.List;
 
@@ -15,22 +16,27 @@ public class TaskService {
 
 
     public Task addTask(Task task) {
-        return taskRepository.addTask(task);
+        return taskRepository.save(task);
     }
+
 
     public List<Task> getAllTasks() {
-        return taskRepository.getAllTasks();
+        return taskRepository.findAll();
     }
 
-    public List<Task> getTasksByStatus(TaskStatus status) {
-        return taskRepository.getTasksByStatus(status);
+    public List<Task> getTasksByStatus(String status) {
+        return taskRepository.findAllTasksByStatus(status);
     }
 
-    public Task updateTaskStatus(Long id, Task task) {
-        return taskRepository.updateTaskStatus(id, task);
+    @Transactional
+    public void updateTaskStatus(Long id, TaskStatus status) {
+         taskRepository.updateTaskStatusByID(id, status);
     }
 
     public void deleteTask(Long id) {
-        taskRepository.deleteTask(id);
+        Task task = taskRepository.findById(id).get();
+        taskRepository.delete(task);
     }
+
+
 }
