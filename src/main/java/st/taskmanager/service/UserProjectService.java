@@ -1,11 +1,12 @@
 package st.taskmanager.service;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
+@Service
 public class UserProjectService {
     public List getUsersByProjectId(Long projectId) {
         return new ArrayList();
