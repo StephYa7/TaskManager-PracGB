@@ -5,10 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+import java.util.List;
+import java.util.Set;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 @Table(name = "users")
 public class User {
 
@@ -25,5 +28,6 @@ public class User {
     @Column(nullable = true)
     private String role;
 
-
+    @OneToMany(mappedBy = "user")
+    private List<UsersProject> userProjects;
 }

@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import st.taskmanager.util.MyLocalDateTimeDeserializer;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -32,5 +34,8 @@ public class Project {
     @Column(nullable = true, name = "date_created")
     @JsonDeserialize(using = MyLocalDateTimeDeserializer.class)
     private LocalDate dateCreated;
+
+    @OneToMany(mappedBy = "project")
+    private List<UsersProject> userProjects;
 
 }

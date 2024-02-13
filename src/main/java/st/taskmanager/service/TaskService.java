@@ -2,10 +2,9 @@ package st.taskmanager.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import st.taskmanager.model.Task;
-import st.taskmanager.util.TaskStatus;
 import st.taskmanager.repository.TaskRepository;
+import st.taskmanager.util.TaskStatus;
 
 import java.util.List;
 import java.util.Optional;
