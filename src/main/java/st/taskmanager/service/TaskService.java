@@ -8,6 +8,7 @@ import st.taskmanager.util.TaskStatus;
 import st.taskmanager.repository.TaskRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -24,13 +25,14 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public List<Task> getTasksByStatus(String status) {
-        return taskRepository.findAllTasksByStatus(status);
+    public List<Task> getTasksByStatus(TaskStatus status) {
+        return taskRepository.findByStatus(status);
     }
 
-    @Transactional
-    public void updateTaskStatus(Long id, TaskStatus status) {
-         taskRepository.updateTaskStatusByID(id, status);
+    public Optional<Task> updateTaskStatus(Long id, Task task) {
+        Optional<Task> updateTask = taskRepository.findById(id);
+        updateTask.ifPresent(o -> o.setStatus(task.getStatus()));
+        return updateTask;
     }
 
     public void deleteTask(Long id) {

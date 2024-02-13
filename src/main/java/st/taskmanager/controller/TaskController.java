@@ -1,11 +1,14 @@
 package st.taskmanager.controller;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import st.taskmanager.model.Task;
 import st.taskmanager.service.TaskService;
+import st.taskmanager.util.TaskStatus;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/tasks")
@@ -24,13 +27,14 @@ public class TaskController {
     }
 
     @GetMapping("/status/{status}")
-    public List<Task> getTasksByStatus(@PathVariable String status) {
+    public List<Task> getTasksByStatus(@PathVariable TaskStatus status) {
         return taskService.getTasksByStatus(status);
     }
 
     @PutMapping("/{id}")
-    public void updateTaskStatus(@PathVariable Long id, @RequestBody Task task) {
-        taskService.updateTaskStatus(id, task.getStatus());
+    public ResponseEntity<Task> updateTaskStatus(@PathVariable Long id, @RequestBody Task task) {
+        Optional<Task> result = taskService.updateTaskStatus(id, task);
+        return result.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")

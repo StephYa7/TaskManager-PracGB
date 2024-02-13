@@ -26,12 +26,12 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
 
-    @Column(nullable = false)
+    @Column(nullable = false,name = "description")
     private String description;
 
+    @Column(nullable = true, name = "date_created")
     @JsonFormat(pattern = "yyyy-MM-dd")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = true, name = "date_created")
     @JsonDeserialize(using = MyLocalDateTimeDeserializer.class)
     private LocalDateTime dateCreated;
 }

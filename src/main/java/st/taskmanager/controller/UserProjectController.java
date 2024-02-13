@@ -17,28 +17,28 @@ public class UserProjectController {
     private UserProjectService userProjectService;
 
 
-    @GetMapping("/{id}")
-    public ResponseEntity<List<User>> getUsersByProjectId(@PathVariable Long id) {
-        List<User> users = userProjectService.getUsersByProjectId(id);
-        return ResponseEntity.ok(users);
-    }
-
-    @GetMapping
-    public ResponseEntity<List> getProjectsByUserId(Long userId) {
-        return (ResponseEntity<List>) userProjectService.getProjectsByUserId(userId);
-    }
-
-    @PostMapping
-    public ResponseEntity addUserToProject(Long userId, Long projectId) {
-        userProjectService.addUserToProject(userId, projectId);
-
-        return
-    }
-
-    @PostMapping
-    public ResponseEntity<User> removeUserFromProject(Long userId, Long projectId) {
-        userProjectService.removeUserFromProject(userId, projectId);
-
-        return
-    }
+//    @GetMapping("/{id}")
+//    public ResponseEntity<List<User>> getUsersByProjectId(@PathVariable Long id) {
+//        List<User> users = userProjectService.getUsersByProjectId(id);
+//        return ResponseEntity.ok(users);
+//    }
+//
+//    @GetMapping
+//    public ResponseEntity<List> getProjectsByUserId(Long userId) {
+//        return (ResponseEntity<List>) userProjectService.getProjectsByUserId(userId);
+//    }
+//
+//    @PostMapping
+//    public ResponseEntity addUserToProject(Long userId, Long projectId) {
+//        userProjectService.addUserToProject(userId, projectId);
+//
+//        return
+//    }
+//
+//    @PostMapping
+//    public ResponseEntity<User> removeUserFromProject(Long userId, Long projectId) {
+//        userProjectService.removeUserFromProject(userId, projectId);
+//
+//        return
+//    }
 }

@@ -21,8 +21,7 @@ public class UserProjectService {
 
 
     public List<User> getUsersByProjectId(Long projectId) {
-        List<User> users = usersProjectRepository.findAllById(projectId);
-        return users;
+        return new ArrayList<>();
     }
 
     public List getProjectsByUserId(Long userId) {
