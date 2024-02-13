@@ -3,6 +3,7 @@ spring:
     init:
       mode: always
   jpa:
+    defer-datasource-initialization: true
     properties:
       hibernate:
         hbm2ddl:

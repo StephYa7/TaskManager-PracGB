@@ -10,7 +10,6 @@ import st.taskmanager.util.MyLocalDateTimeDeserializer;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -21,7 +20,7 @@ public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(nullable = false)
     private String name;
@@ -36,6 +35,17 @@ public class Project {
     private LocalDate dateCreated;
 
     @OneToMany(mappedBy = "project")
+    @Transient
     private List<UsersProject> userProjects;
 
+    @Override
+
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", dateCreated=" + dateCreated +
+                '}';
+    }
 }

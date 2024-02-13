@@ -12,22 +12,16 @@ import lombok.RequiredArgsConstructor;
 @Table(name = "user_projects")
 public class UsersProject {
 
-
-    @Column(name = "project_id")
-    private Long projectId;
-
-    @Column(name = "user_id")
-    private Long userId;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @EmbeddedId
+    private UserProjectKey id;
 
     @ManyToOne
-    @JoinColumn(name = "project_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @MapsId("projectId")
+    @JoinColumn(name = "project_id")
     private Project project;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @MapsId("userId")
+    @JoinColumn(name = "user_id")
     private User user;
 }

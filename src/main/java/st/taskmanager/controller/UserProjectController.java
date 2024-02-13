@@ -12,34 +12,39 @@ import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
-@RestController("/projects")
+@RestController
+@RequestMapping("/projects")
 public class UserProjectController {
 
     private UserProjectService userProjectService;
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<List<User>> getUsersByProjectId(@PathVariable Long id) {
+    public ResponseEntity<List<User>> getUsersByProjectId(@PathVariable("id") Long id) {
         List<User> users = userProjectService.getUsersByProjectId(id);
-        if (users.isEmpty()) return ResponseEntity.notFound().build();
+        if (users.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(users);
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<List<Project>> getProjectsByUserId(Long userId) {
+    public ResponseEntity<List<Project>> getProjectsByUserId(@PathVariable("id") Long userId) {
         List<Project> projects = userProjectService.getProjectsByUserId(userId);
-        if (projects.isEmpty()) return ResponseEntity.notFound().build();
+        if (projects.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(projects);
     }
 
-    @PostMapping("")
-    public ResponseEntity addUserToProject(@RequestBody Long userId,@RequestBody Long projectId) {
+    @PostMapping()
+    public ResponseEntity<Void> addUserToProject(Long userId, Long projectId) {
         userProjectService.addUserToProject(userId, projectId);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/users/delete")
-    public ResponseEntity<User> removeUserFromProject(@RequestBody Long userId,@RequestBody Long projectId) {
+    public ResponseEntity<Void> removeUserFromProject(Long userId, Long projectId) {
         userProjectService.removeUserFromProject(userId, projectId);
         return ResponseEntity.ok().build();
     }
