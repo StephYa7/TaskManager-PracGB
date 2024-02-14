@@ -1,12 +1,10 @@
 package st.taskmanager.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import st.taskmanager.util.MyLocalDateTimeDeserializer;
 import st.taskmanager.util.TaskStatus;
 
 import java.time.LocalDateTime;
@@ -31,7 +29,5 @@ public class Task {
 
     @Column(nullable = true, name = "date_created")
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonDeserialize(using = MyLocalDateTimeDeserializer.class)
     private LocalDateTime dateCreated;
 }

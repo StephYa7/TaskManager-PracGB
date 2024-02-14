@@ -1,12 +1,10 @@
 package st.taskmanager.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import st.taskmanager.util.MyLocalDateTimeDeserializer;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -28,10 +26,8 @@ public class Project {
     @Column(nullable = true)
     private String description;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(nullable = true, name = "date_created")
-    @JsonDeserialize(using = MyLocalDateTimeDeserializer.class)
     private LocalDate dateCreated;
 
     @OneToMany(mappedBy = "project")
