@@ -6,6 +6,7 @@ import st.taskmanager.model.Task;
 import st.taskmanager.repository.TaskRepository;
 import st.taskmanager.util.TaskStatus;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +17,7 @@ public class TaskService {
 
 
     public Task addTask(Task task) {
+        task.setDateCreated(LocalDateTime.now());
         return taskRepository.save(task);
     }
 
@@ -38,6 +40,4 @@ public class TaskService {
         Task task = taskRepository.findById(id).get();
         taskRepository.delete(task);
     }
-
-
 }

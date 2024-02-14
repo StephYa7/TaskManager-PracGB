@@ -30,14 +30,4 @@ public class User {
     @OneToMany(mappedBy = "user")
     @Transient
     private List<UsersProject> userProjects;
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                '}';
-    }
 }
