@@ -11,7 +11,6 @@ import st.taskmanager.repository.UserRepository;
 import st.taskmanager.repository.UsersProjectRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -23,29 +22,25 @@ public class UserProjectService {
 
 
     public List<User> getUsersByProjectId(Long projectId) {
-        return usersProjectRepository.findAll()
-                .stream()
-                .filter(u -> u.getId().getProjectId().equals(projectId))
-                .map(u -> u.getUser()).collect(Collectors.toList());
+        List<UsersProject> allByProjectId = usersProjectRepository.findAllByProjectId(projectId);
+        return allByProjectId.stream().map(UsersProject::getUser).toList();
     }
 
     public List<Project> getProjectsByUserId(Long userId) {
-        return usersProjectRepository.findAll()
-                .stream()
-                .filter(u -> u.getId().getUserId().equals(userId))
-                .map(u -> u.getProject()).collect(Collectors.toList());
+        List<UsersProject> allByUserId = usersProjectRepository.findAllByUserId(userId);
+        return allByUserId.stream().map(UsersProject::getProject).toList();
     }
 
     public void addUserToProject(Long userId, Long projectId) {
         UsersProject userProject = new UsersProject();
         UserProjectKey userProjectKey = new UserProjectKey();
-
         userProjectKey.setUserId(userId);
         userProjectKey.setProjectId(projectId);
 
         userProject.setId(userProjectKey);
         userProject.setUser(userRepository.findById(userId).get());
         userProject.setProject(projectRepository.findById(projectId).get());
+
         usersProjectRepository.save(userProject);
     }
 
