@@ -1,7 +1,6 @@
 package st.taskmanager.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import st.taskmanager.model.Project;
@@ -9,7 +8,6 @@ import st.taskmanager.model.User;
 import st.taskmanager.service.UserProjectService;
 
 import java.util.List;
-import java.util.Optional;
 
 @AllArgsConstructor
 @RestController

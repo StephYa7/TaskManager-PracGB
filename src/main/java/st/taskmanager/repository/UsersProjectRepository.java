@@ -6,4 +6,5 @@ import st.taskmanager.model.UsersProject;
 
 @Repository
 public interface UsersProjectRepository extends JpaRepository<UsersProject, Long> {
+    UsersProject findByProjectIdAndUserId(Long userId, Long projectId);
 }

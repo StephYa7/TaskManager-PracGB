@@ -50,11 +50,7 @@ public class UserProjectService {
     }
 
     public void removeUserFromProject(Long userId, Long projectId) {
-        usersProjectRepository.delete(usersProjectRepository.findAll()
-                .stream()
-                .filter(project -> project.getId().getProjectId() == projectId)
-                .filter(user -> user.getId().getUserId() == userId).findFirst().get());
-
-
+        UsersProject delete = usersProjectRepository.findByProjectIdAndUserId(userId, projectId);
+        usersProjectRepository.delete(delete);
     }
 }
