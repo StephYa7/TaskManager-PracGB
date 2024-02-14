@@ -28,10 +28,9 @@ public class Project {
     @Column(nullable = true)
     private String description;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(nullable = true, name = "date_created")
-    @JsonDeserialize(using = MyLocalDateTimeDeserializer.class)
+//    @JsonDeserialize(using = MyLocalDateTimeDeserializer.class)
     private LocalDate dateCreated;
 
     @OneToMany(mappedBy = "project")

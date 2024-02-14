@@ -31,7 +31,6 @@ public class Task {
 
     @Column(nullable = true, name = "date_created")
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonDeserialize(using = MyLocalDateTimeDeserializer.class)
+//    @JsonDeserialize(using = MyLocalDateTimeDeserializer.class)
     private LocalDateTime dateCreated;
 }
